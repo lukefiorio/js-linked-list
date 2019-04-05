@@ -51,9 +51,9 @@ function linkedListGenerator() {
 
   const remove = function (num) {
     // index not in range
-    if (get(num)===false) return false;
+    if (get(num) === false) return false;
     // remove head
-    if (num===0) head = head.next;
+    if (num === 0) head = head.next;
 
     // find node to remove & prior node; reassign prior node redirect
     let NodeToRedirect = get(num - 1);
@@ -64,7 +64,10 @@ function linkedListGenerator() {
     if (NodeToRemove.next === null) tail = NodeToRedirect;
   }
 
-  const insert = function () { }
+  const insert = function () {
+    // add code here
+
+  }
 
   return {
     getHead: getHead,
