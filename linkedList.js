@@ -26,13 +26,41 @@ function linkedListGenerator() {
     let newNode = {};
     newNode.value = val;
     newNode.next = null;
-    tail = newNode;
-    if (!head) head = newNode;
-    return newNode;
+
+    if (head) {
+      tail.next = newNode;
+      tail = newNode;
+    }
+    
+    if (!head) {
+      head = newNode;
+      tail = newNode;
+    }
+    linkedList = head;
+    return head;
   }
 
   const remove = function () { }
-  const get = function () { }
+
+  const get = function (num) {
+
+    if (num===0) return getHead();
+
+    let curObj = head;
+    let nextObj = {};
+
+    let i = 0;
+    while (i<num && curObj !== null) {
+      nextObj = curObj.next;
+      curObj = nextObj;
+      i++
+    }
+    if (nextObj===null) return false;
+
+    return nextObj;
+   }
+  
+  
   const insert = function () { }
 
   return {
