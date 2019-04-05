@@ -33,13 +33,13 @@ function linkedListGenerator() {
     return head;
   }
 
-  const get = function (num) {
+  const get = function (index) {
 
     let curObj = head;
     let nextObj = curObj;
 
     let i = 0;
-    while (i < num && curObj !== null) {
+    while (i < index && curObj !== null) {
       nextObj = curObj.next;
       curObj = nextObj;
       i++
@@ -49,23 +49,46 @@ function linkedListGenerator() {
     return nextObj;
   }
 
-  const remove = function (num) {
+  const remove = function (index) {
     // index not in range
-    if (get(num) === false) return false;
+    if (get(index) === false) return false;
     // remove head
-    if (num === 0) head = head.next;
+    if (index === 0) head = head.next;
 
     // find node to remove & prior node; reassign prior node redirect
-    let NodeToRedirect = get(num - 1);
-    let NodeToRemove = get(num);
+    let NodeToRedirect = get(index - 1);
+    let NodeToRemove = get(index);
     NodeToRedirect.next = NodeToRemove.next;
 
     // if removed node was tail; reassign prior node as tail
     if (NodeToRemove.next === null) tail = NodeToRedirect;
   }
 
-  const insert = function () {
-    // add code here
+  const insert = function (val, index) {
+    // index not in range
+    if (index < 0) return false;
+    if (get(index) === false && get(index - 1) === false) return false;
+
+    // index in range
+    let newNode = {};
+    newNode.value = val;
+
+    // insert as new head
+    if (index === 0) {
+      newNode.next = head;
+      head = newNode;
+    }
+
+    // insert in middle
+    if (index > 0 && get(index) !== false) {
+      frontNode = get(index - 1);
+      backNode = get(index);
+      newNode.next = backNode;
+      frontNode.next = newNode;
+    }
+
+    // insert as new tail
+    if (get(index) === false && get(index - 1) === tail) add(val);
 
   }
 
