@@ -40,14 +40,21 @@ function linkedListGenerator() {
     return head;
   }
 
-  const remove = function () { }
+  const remove = function (num) {
+    let NodeToRemove = get(num);
+    let NodeToRedirect = get(num-1);
+    console.log(head);
+    NodeToRedirect.next = NodeToRemove.next;
+    console.log(head);
+
+    return NodeToRedirect;
+
+  }
 
   const get = function (num) {
 
-    if (num===0) return getHead();
-
     let curObj = head;
-    let nextObj = {};
+    let nextObj = curObj;
 
     let i = 0;
     while (i<num && curObj !== null) {
