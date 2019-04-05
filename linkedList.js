@@ -12,13 +12,6 @@ function linkedListGenerator() {
     return head;
   }
   const getTail = function () {
-    // if (obj) {
-    //   while (obj.next !== null) {
-    //     nextObj = obj.next;
-    //     obj = nextObj;
-    //   }
-    // return nextObj;
-    // }
     return tail;
   }
 
@@ -31,7 +24,7 @@ function linkedListGenerator() {
       tail.next = newNode;
       tail = newNode;
     }
-    
+
     if (!head) {
       head = newNode;
       tail = newNode;
@@ -40,34 +33,37 @@ function linkedListGenerator() {
     return head;
   }
 
-  const remove = function (num) {
-    let NodeToRemove = get(num);
-    let NodeToRedirect = get(num-1);
-    console.log(head);
-    NodeToRedirect.next = NodeToRemove.next;
-    console.log(head);
-
-    return NodeToRedirect;
-
-  }
-
   const get = function (num) {
 
     let curObj = head;
     let nextObj = curObj;
 
     let i = 0;
-    while (i<num && curObj !== null) {
+    while (i < num && curObj !== null) {
       nextObj = curObj.next;
       curObj = nextObj;
       i++
     }
-    if (nextObj===null) return false;
+    if (nextObj === null) return false;
 
     return nextObj;
-   }
-  
-  
+  }
+
+  const remove = function (num) {
+    // index not in range
+    if (get(num)===false) return false;
+    // remove head
+    if (num===0) head = head.next;
+
+    // find node to remove & prior node; reassign prior node redirect
+    let NodeToRedirect = get(num - 1);
+    let NodeToRemove = get(num);
+    NodeToRedirect.next = NodeToRemove.next;
+
+    // if removed node was tail; reassign prior node as tail
+    if (NodeToRemove.next === null) tail = NodeToRedirect;
+  }
+
   const insert = function () { }
 
   return {
