@@ -7,14 +7,14 @@ function linkedListGenerator() {
   let head = null;
   let tail = null;
 
-  const getHead = function() {
+  const getHead = function () {
     return head;
   };
-  const getTail = function() {
+  const getTail = function () {
     return tail;
   };
 
-  const add = function(val) {
+  const add = function (val) {
     let newNode = {};
     newNode.value = val;
     newNode.next = null;
@@ -28,12 +28,13 @@ function linkedListGenerator() {
       head = newNode;
       tail = newNode;
     }
+
     linkedList = head;
 
     return head;
   };
 
-  const get = function(index) {
+  const get = function (index) {
     let curObj = head;
 
     let i = 0;
@@ -41,6 +42,7 @@ function linkedListGenerator() {
       curObj = curObj.next;
       i++;
     }
+
     if (curObj === null) {
       return false;
     }
@@ -48,7 +50,7 @@ function linkedListGenerator() {
     return curObj;
   };
 
-  const remove = function(index) {
+  const remove = function (index) {
     // index not in range
     if (get(index) === false) {
       return false;
@@ -64,10 +66,12 @@ function linkedListGenerator() {
     NodeToRedirect.next = NodeToRemove.next;
 
     // if removed node was tail; reassign prior node as tail
-    if (NodeToRemove.next === null) tail = NodeToRedirect;
+    if (NodeToRemove.next === null) {
+      tail = NodeToRedirect;
+    }
   };
 
-  const insert = function(val, index) {
+  const insert = function (val, index) {
     // index not in range
     if (index < 0) {
       return false;
@@ -95,7 +99,7 @@ function linkedListGenerator() {
     }
 
     // insert as new tail
-    if (get(index) === false && get(index - 1) === tail) {
+    if (backNode === false && frontNode === tail) {
       add(val);
     }
   };
